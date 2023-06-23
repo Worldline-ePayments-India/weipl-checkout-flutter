@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <corners android:radius="@dimen/wl_buttonDefaultCornerRadius" />
+
+    <stroke
+        android:width="@dimen/wl_buttonDefaultStrokeWidth"
+        android:color="@color/wl_buttonDefaultStrokeColor" />
+
+    <solid android:color="@color/wl_buttonDefaultColor" />
+
+    <padding
+        android:bottom="@dimen/wl_buttonVerticalPadding"
+        android:left="@dimen/wl_buttonHorizontalPadding"
+        android:right="@dimen/wl_buttonHorizontalPadding"
+        android:top="@dimen/wl_buttonVerticalPadding" />
+
+</shape>

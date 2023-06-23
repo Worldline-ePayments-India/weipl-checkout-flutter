@@ -1,0 +1,29 @@
+PODS:
+  - Flutter (1.0.0)
+  - weipl_checkout (1.2.6)
+  - weipl_checkout_flutter (1.0.0):
+    - Flutter
+    - weipl_checkout
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - weipl_checkout_flutter (from `.symlinks/plugins/weipl_checkout_flutter/ios`)
+
+SPEC REPOS:
+  trunk:
+    - weipl_checkout
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  weipl_checkout_flutter:
+    :path: ".symlinks/plugins/weipl_checkout_flutter/ios"
+
+SPEC CHECKSUMS:
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  weipl_checkout: 24c2cca69629d8b7834b35e82592a3368a8cd1b9
+  weipl_checkout_flutter: d57f3021444a6239f10286a3a2ad0e1222d6cd21
+
+PODFILE CHECKSUM: af8f2633b681d9bf6ce353c001b61ca7630a200a
+
+COCOAPODS: 1.12.1

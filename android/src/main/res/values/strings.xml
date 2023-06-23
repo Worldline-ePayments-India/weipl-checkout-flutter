@@ -1,0 +1,7 @@
+<resources>
+
+    <!-- Custom Dialog -->
+    <string name="wl_back_press_dialog_message">Are you sure you want to cancel the Payment / Request?</string>
+    <string name="wl_custom_dialog_yes_label">Yes</string>
+    <string name="wl_custom_dialog_no_label">No</string>
+</resources>

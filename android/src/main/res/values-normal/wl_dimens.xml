@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Button Dimensions -->
+    <dimen name="wl_buttonDefaultStrokeWidth">1dp</dimen>
+    <dimen name="wl_buttonDefaultCornerRadius">10dp</dimen>
+    <dimen name="wl_buttonPressedStrokeWidth">1dp</dimen>
+    <dimen name="wl_buttonPressedCornerRadius">10dp</dimen>
+    <dimen name="wl_buttonVerticalPadding">5dp</dimen>
+    <dimen name="wl_buttonHorizontalPadding">10dp</dimen>
+
+</resources>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Rounded view Colors -->
+
+    <color name="wl_roundedViewBorderColor">#cccccc</color>
+    <color name="wl_roundedViewBGColor">#FFFFFF</color>
+
+    <!-- TextView Colors -->
+
+    <color name="wl_textViewTextColor">#2E2E2E</color>
+    <color name="wl_textViewBackgroundColor">#FFFFFF</color>
+
+    <!-- Button Colors -->
+
+    <color name="wl_buttonDefaultStrokeColor">#a0e0b071</color>
+    <color name="wl_buttonDefaultColor">#40BFAB</color>
+    <color name="wl_buttonPressedStrokeColor">#a0e0b071</color>
+    <color name="wl_buttonPressedColor">#B1E4DD</color>
+</resources>

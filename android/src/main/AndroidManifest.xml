@@ -1,0 +1,26 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.worldline.in.weipl_checkout_flutter">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="true"
+        android:theme="@style/WLCheckoutTheme"
+        tools:targetApi="33">
+        <activity android:name="com.weipl.checkout.WLCheckoutActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/WLCheckoutTheme">
+        </activity>
+    </application>
+
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="upi" android:host="pay"/>
+        </intent>
+    </queries>
+</manifest>

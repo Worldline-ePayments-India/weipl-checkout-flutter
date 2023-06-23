@@ -1,0 +1,27 @@
+name: weipl_checkout_flutter
+description: A Flutter plugin for Worldline ePayments India SDK. Visit https://in.worldline.com/.
+version: 1.0.0
+homepage: https://github.com/Worldline-ePayments-India/weipl-checkout-flutter
+
+environment:
+  sdk: '>=2.19.6 <3.0.0'
+  flutter: ">=2.5.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  eventify: ^1.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  plugin:
+    platforms:
+      android:
+        package: com.worldline.in.weipl_checkout_flutter
+        pluginClass: WeiplCheckoutFlutterPlugin
+      ios:
+        pluginClass: WeiplCheckoutFlutterPlugin
