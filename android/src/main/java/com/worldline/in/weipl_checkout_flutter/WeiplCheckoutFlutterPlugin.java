@@ -38,7 +38,7 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
   private Context context;
   private static Activity activity;
 
-  public Result callback;
+  private static Result callback;
 
   public WeiplCheckoutFlutterPlugin() {
 

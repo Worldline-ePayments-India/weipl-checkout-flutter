@@ -1,7 +1,7 @@
 PODS:
   - Flutter (1.0.0)
   - weipl_checkout (1.2.6)
-  - weipl_checkout_flutter (1.0.0):
+  - weipl_checkout_flutter (1.0.1):
     - Flutter
     - weipl_checkout
 
