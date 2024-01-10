@@ -23,8 +23,8 @@ class WeiplCheckoutFlutter {
   }
 
   // Returns UPI Installed apps list for Android
-  Future<List> upiIntentAppsList() async {
-    List response = await _channel.invokeMethod('upiIntentAppsList');
+  Future<Map> upiIntentAppsList() async {
+    Map response = await _channel.invokeMethod('upiIntentAppsList');
     return response;
   }
 
@@ -50,10 +50,19 @@ class WeiplCheckoutFlutter {
       handler(event.eventData);
     };
     _eventEmitter.on(event, null, cb);
+    _syncResponse();
   }
 
   // Clears all event listeners
   void clear() {
     _eventEmitter.clear();
+  }
+
+  // Sync pending response
+  void _syncResponse() async {
+    var response = await _channel.invokeMethod('syncResponse');
+    if (response != null) {
+      _handleResult(response);
+    }
   }
 }

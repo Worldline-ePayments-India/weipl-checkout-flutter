@@ -4,7 +4,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = 'weipl_checkout_flutter'
-  s.version          = '1.0.2'
+  s.version          = '1.0.3'
   s.summary          = 'Flutter plugin for Worldline ePayments India SDK.'
   s.description      = 'This is official Flutter plugin for Worldline ePayments India SDK.'
   s.homepage         = 'https://github.com/Worldline-ePayments-India/weipl-checkout-flutter'

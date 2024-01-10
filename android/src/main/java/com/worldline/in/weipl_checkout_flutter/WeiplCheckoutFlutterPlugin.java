@@ -42,7 +42,9 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
 
     private static Activity activity;
 
-    private static Result callback;
+    private Result callback;
+
+    private Object response;
 
     public WeiplCheckoutFlutterPlugin() {
 
@@ -67,12 +69,14 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
 
     @Override
     public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        this.callback = result;
+        callback = result;
         try {
             if (call.method.equals("open")) {
-                this.open((Map < String, Object > ) call.arguments);
+                this.open((Map<String, Object>) call.arguments);
             } else if (call.method.equals("upiIntentAppsList")) {
                 this.upiIntentAppsList();
+            } else if (call.method.equals("syncResponse")) {
+                this.syncResponse();
             } else {
                 result.notImplemented();
             }
@@ -81,9 +85,11 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
         }
     }
 
-    private void open(Map < String, Object > args) {
+    private void open(Map<String, Object> args) {
         if (args == null) {
-            this.callback.success("Expected checkout initialisation options");
+            Map<String, Object> retResponse = new HashMap<>();
+            retResponse.put("errorMsg", "Expected checkout initialisation options");
+            callback.success(retResponse);
             return;
         }
 
@@ -92,7 +98,6 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
             WLCheckoutActivity.open(activity, convertedObject);
         } catch (Exception e) {
             Log.d(TAG, e.getLocalizedMessage());
-            throw new RuntimeException(e);
         }
     }
 
@@ -100,28 +105,30 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
         JSONArray upiIntentResponse = WLCheckoutActivity.getUPIResponse(activity);
 
         if (upiIntentResponse == null) {
-            if (this != null && this.callback != null) {
-                this.callback.success("No response received!");
+            String emptyResponse = "No UPI Apps found!";
+            if (callback != null) {
+                Map<String, Object> retResponse = new HashMap<>();
+                retResponse.put("errorMsg", emptyResponse);
+                callback.success(retResponse);
             }
-            Log.d(TAG, "No response received!");
-        } else {
-            List < Object > retList = new ArrayList < Object > ();
-            if (upiIntentResponse != null) {
-                try {
-                    retList = toList(upiIntentResponse);
-                    this.callback.success(retList);
-                } catch (Exception e) {
-                    Log.d(TAG, "Got error in upiIntentAppsList()");
-                    throw new RuntimeException(e);
-                }
-            }
+            Log.d(TAG, emptyResponse);
+			return;
+        }
+		
+        try {
+            List<Object> retList = toList(upiIntentResponse);
+            Map<String, Object> retResponse = new HashMap<>();
+            retResponse.put("appsList", retList);
+            callback.success(retResponse);
+        } catch (Exception e) {
+            Log.d(TAG, "Got error in upiIntentAppsList()");
         }
     }
 
-    public static Map < String, Object > toMap(JSONObject object) throws JSONException {
-        Map < String, Object > map = new HashMap < String, Object > ();
+    public static Map<String, Object> toMap(JSONObject object) throws JSONException {
+        Map<String, Object> map = new HashMap<>();
 
-        Iterator < String > keysItr = object.keys();
+        Iterator<String> keysItr = object.keys();
         while (keysItr.hasNext()) {
             String key = keysItr.next();
             Object value = object.get(key);
@@ -136,8 +143,8 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
         return map;
     }
 
-    public static List < Object > toList(JSONArray array) throws JSONException {
-        List < Object > list = new ArrayList < Object > ();
+    public static List<Object> toList(JSONArray array) throws JSONException {
+        List<Object> list = new ArrayList<>();
         for (int i = 0; i < array.length(); i++) {
             Object value = array.get(i);
             if (value instanceof JSONArray) {
@@ -152,29 +159,36 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
 
     @Override
     public void wlCheckoutPaymentResponse(JSONObject jsonObject) {
-        Map < String, Object > retMap = new HashMap < String, Object > ();
+        Map<String, Object> retMap = new HashMap<>();
         if (jsonObject != null) {
             try {
                 retMap = toMap(jsonObject);
-                this.callback.success(retMap);
+                callback.success(retMap);
             } catch (Exception e) {
+                response = retMap;
                 Log.d(TAG, "Got error in wlCheckoutPaymentResponse()");
-                throw new RuntimeException(e);
             }
         }
     }
 
     @Override
     public void wlCheckoutPaymentError(JSONObject jsonObject) {
-        Map < String, Object > retMap = new HashMap < String, Object > ();
+        Map<String, Object> retMap = new HashMap<>();
         if (jsonObject != null) {
             try {
                 retMap = toMap(jsonObject);
-                this.callback.success(retMap);
+                callback.success(retMap);
             } catch (Exception e) {
+                response = retMap;
                 Log.d(TAG, "Got error in wlCheckoutPaymentError()");
-                throw new RuntimeException(e);
             }
+        }
+    }
+
+    public void syncResponse() {
+        if (callback != null) {
+            callback.success(response);
+            response = null;
         }
     }
 

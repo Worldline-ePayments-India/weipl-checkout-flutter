@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ElevatedButton(
                   onPressed: () {
                     
-                    String deviceID = ""; // initiaze varibale
+                    String deviceID = ""; // initialize variable
 
                     if (Platform.isAndroid) {
                       deviceID = "AndroidSH2"; // Android-specific deviceId, supported options are "AndroidSH1" & "AndroidSH2"
@@ -92,11 +92,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           "PRIMARY_COLOR_CODE":
                               "#45beaa", //merchant primary color code
                           "SECONDARY_COLOR_CODE":
-                              "#FFFFFF", //provide merchant"s suitable color code
+                              "#FFFFFF", //provide merchant's suitable color code
                           "BUTTON_COLOR_CODE_1":
                               "#2d8c8c", //merchant"s button background color code
                           "BUTTON_COLOR_CODE_2":
-                              "#FFFFFF" //provide merchant"s suitable color code for button text
+                              "#FFFFFF" //provide merchant's suitable color code for button text
                         }
                       }
                     };
@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       showAlertDialog(context, "WL SDK Response", "$status");
                     } else if (Platform.isAndroid) {
                       // android code
-                      List response = await wlCheckoutFlutter.upiIntentAppsList();
+                      Map response = await wlCheckoutFlutter.upiIntentAppsList();
                       showAlertDialog(context, "WL SDK Response", "$response");
                     } else {
                       showAlertDialog(context, "WL SDK Response",

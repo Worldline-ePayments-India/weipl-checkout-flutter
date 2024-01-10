@@ -1,5 +1,5 @@
 group 'com.worldline.in.weipl_checkout_flutter'
-version '1.0.2'
+version '1.0.3'
 
 ext {
     androidxAppCompatVersion = project.hasProperty('androidxAppCompatVersion') ? rootProject.ext.androidxAppCompatVersion : '1.4.2'
