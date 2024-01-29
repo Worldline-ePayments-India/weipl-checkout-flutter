@@ -1,3 +1,7 @@
+## 1.0.4
+
+- Fix applied to handle response exception and syncResponse method added for iOS platform
+
 ## 1.0.3
 
 - Fix applied to handle response exception and syncResponse method added for Android platform
