@@ -42,9 +42,9 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
 
     private static Activity activity;
 
-    private Result callback;
+    private static Result callback;
 
-    private Object response;
+    private static Object response;
 
     public WeiplCheckoutFlutterPlugin() {
 
@@ -68,9 +68,9 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
     }
 
     @Override
-    public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
-        callback = result;
+    public static void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         try {
+            callback = result;
             if (call.method.equals("open")) {
                 this.open((Map<String, Object>) call.arguments);
             } else if (call.method.equals("upiIntentAppsList")) {

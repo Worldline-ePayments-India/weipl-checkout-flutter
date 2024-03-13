@@ -15,7 +15,7 @@ This plugin is available on Pub: [https://pub.dev/packages/weipl_checkout_flutte
 Add this to `dependencies` in your app's `pubspec.yaml`
 
 ```yaml
-weipl_checkout_flutter: ^1.0.4
+weipl_checkout_flutter: ^1.0.5
 ```
 
 **Note for Android**: Make sure that the minimum API level for your app is 21 or higher.
@@ -61,12 +61,6 @@ void handleResponse(Map<dynamic, dynamic> response) {
   // Do something when payment succeeds
 }
 
-```
-
-To clear event listeners, use the `clear` method on the `WeiplCheckoutFlutter` instance.
-
-```dart
-WeiplCheckoutFlutter.clear(); // Removes all listeners
 ```
 
 #### Setup options

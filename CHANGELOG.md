@@ -1,3 +1,7 @@
+## 1.0.5
+
+- Fix applied to handle response exception by adding static to class variables for Android & iOS
+
 ## 1.0.4
 
 - Fix applied to handle response exception and syncResponse method added for iOS platform
