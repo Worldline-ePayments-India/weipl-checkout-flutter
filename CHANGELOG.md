@@ -1,3 +1,7 @@
+## 1.0.6
+
+- Fix applied for orientation in kiosk devices
+
 ## 1.0.5
 
 - Fix applied to handle response exception by adding static to class variables for Android & iOS

@@ -68,7 +68,7 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
     }
 
     @Override
-    public static void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
+    public void onMethodCall(@NonNull MethodCall call, @NonNull Result result) {
         try {
             callback = result;
             if (call.method.equals("open")) {
