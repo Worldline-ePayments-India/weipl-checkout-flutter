@@ -1,3 +1,7 @@
+## 1.0.7
+
+- Fix applied by removing static keyword from variable for iOS
+
 ## 1.0.6
 
 - Fix applied for orientation in kiosk devices

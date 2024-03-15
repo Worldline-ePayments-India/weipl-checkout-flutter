@@ -4,9 +4,9 @@ import Foundation
 import weipl_checkout
 
 public class WeiplCheckoutFlutterPlugin: NSObject, FlutterPlugin {
-    private static var callback: FlutterResult?
-    private static var wlCheckout: WLCheckoutViewController?
-    private static var response: Dictionary<String, Any>?
+    private var callback: FlutterResult?
+    private var wlCheckout: WLCheckoutViewController?
+    private var response: Dictionary<String, Any>?
     
     public static func register(with registrar: FlutterPluginRegistrar) {
         
