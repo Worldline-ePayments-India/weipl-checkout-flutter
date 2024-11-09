@@ -15,7 +15,7 @@ This plugin is available on Pub: [https://pub.dev/packages/weipl_checkout_flutte
 Add this to `dependencies` in your app's `pubspec.yaml`
 
 ```yaml
-weipl_checkout_flutter: ^1.0.7
+weipl_checkout_flutter: ^1.1.0
 ```
 
 **Note for Android**: Make sure that the minimum API level for your app is 21 or higher.
@@ -103,7 +103,7 @@ var options = {
   }
 };
 ```
-Change the **options** accordingly. All options for **[Android](https://www.paynimo.com/paynimocheckout/docs/?device=android)** and **[iOS](https://www.paynimo.com/paynimocheckout/docs/?device=ios)** are available on respective links.
+Change the **options** accordingly from complete **[Flutter](https://www.paynimo.com/paynimocheckout/docs/?device=flutter&nav=params#online)** integration guide.
 
 
 #### Open Checkout
@@ -114,6 +114,6 @@ wlCheckoutFlutter.open(options);
 
 ### Response Handling
 
-Please refer detailed response handling & HASH match logic explaination for **[Android](https://www.paynimo.com/paynimocheckout/docs/?device=android)** and **[iOS](https://www.paynimo.com/paynimocheckout/docs/?device=ios)**.
+Please refer detailed response handling & HASH match logic explaination for **[Flutter](https://www.paynimo.com/paynimocheckout/docs/?device=flutter&nav=response#online)**.
 
 **Note:** HASH Match logic should always be performed on server side only.

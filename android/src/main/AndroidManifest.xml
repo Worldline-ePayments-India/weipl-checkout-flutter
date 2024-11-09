@@ -3,18 +3,17 @@
     package="com.worldline.in.weipl_checkout_flutter">
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-feature android:name="android.hardware.telephony" android:required="false" />
 
     <application
         android:allowBackup="false"
         android:usesCleartextTraffic="false"
         android:supportsRtl="true"
-        android:theme="@style/WLCheckoutTheme"
-        tools:targetApi="33">
+        tools:targetApi="34">
         <activity android:name="com.weipl.checkout.WLCheckoutActivity"
-            android:exported="true"
-            android:theme="@style/WLCheckoutTheme">
+            android:exported="true" android:screenOrientation="portrait">
         </activity>
-        <meta-data android:name="sdk_version" android:value="1.0.3" />
+        <meta-data android:name="sdk_version" android:value="1.2.1" />
         <meta-data android:name="DESCRIPTION" android:value="" />
     </application>
 

@@ -1,3 +1,7 @@
+## 1.1.0
+
+- SMS Auto Read OTP support added and also some minor bug fixes applied 
+
 ## 1.0.7
 
 - Fix applied by removing static keyword from variable for iOS
