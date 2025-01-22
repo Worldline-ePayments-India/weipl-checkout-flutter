@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
+import 'dart:io' show Platform;
+
 import 'package:flutter/material.dart';
 import 'package:weipl_checkout_flutter/weipl_checkout_flutter.dart';
-
-import 'dart:io' show Platform;
 
 void main() {
   runApp(const MyApp());
@@ -55,13 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
               // Payment action
               ElevatedButton(
                   onPressed: () {
-                    
                     String deviceID = ""; // initialize variable
 
                     if (Platform.isAndroid) {
-                      deviceID = "AndroidSH2"; // Android-specific deviceId, supported options are "AndroidSH1" & "AndroidSH2"
+                      deviceID =
+                          "AndroidSH2"; // Android-specific deviceId, supported options are "AndroidSH1" & "AndroidSH2"
                     } else if (Platform.isIOS) {
-                      deviceID = "iOSSH2"; // iOS-specific deviceId, supported options are "iOSSH1" & "iOSSH2"
+                      deviceID =
+                          "iOSSH2"; // iOS-specific deviceId, supported options are "iOSSH1" & "iOSSH2"
                     }
 
                     var reqJson = {
@@ -117,7 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       showAlertDialog(context, "WL SDK Response", "$status");
                     } else if (Platform.isAndroid) {
                       // android code
-                      Map response = await wlCheckoutFlutter.upiIntentAppsList();
+                      Map response =
+                          await wlCheckoutFlutter.upiIntentAppsList();
                       showAlertDialog(context, "WL SDK Response", "$response");
                     } else {
                       showAlertDialog(context, "WL SDK Response",

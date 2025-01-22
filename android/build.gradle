@@ -1,45 +1,52 @@
-group 'com.worldline.in.weipl_checkout_flutter'
-version '1.1.0'
-
-ext {
-    androidxAppCompatVersion = project.hasProperty('androidxAppCompatVersion') ? rootProject.ext.androidxAppCompatVersion : '1.4.2'
-}
+group = "com.worldline.in.weipl_checkout_flutter"
+version = "1.1.0"
 
 buildscript {
+    ext.kotlin_version = "1.7.10"
     repositories {
         google()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
+        classpath("com.android.tools.build:gradle:7.3.0")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version")
     }
 }
 
-rootProject.allprojects {
+allprojects {
     repositories {
         google()
         mavenCentral()
     }
 }
 
-apply plugin: 'com.android.library'
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
 
 android {
-    compileSdkVersion 34
+    if (project.android.hasProperty("namespace")) {
+        namespace = "com.worldline.in.weipl_checkout_flutter"
+    }
+
+    compileSdk = 34
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     defaultConfig {
-        minSdkVersion 21
+        minSdk 21
     }
 
     dependencies {
         api files('libs/weipl_checkout.jar')
-        implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+        implementation "androidx.appcompat:appcompat:1.7.0"
         implementation "androidx.constraintlayout:constraintlayout:2.1.4"
         implementation "com.android.volley:volley:1.2.1"
         implementation 'com.google.android.gms:play-services-auth:21.0.0'
