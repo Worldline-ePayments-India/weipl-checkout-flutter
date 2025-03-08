@@ -117,7 +117,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       showAlertDialog(context, "WL SDK Response", "$status");
                     } else if (Platform.isAndroid) {
                       // android code
-                      Map response = await wlCheckoutFlutter.upiIntentAppsList();
+                      Map<dynamic, dynamic> response = await wlCheckoutFlutter.upiIntentAppsList();
                       showAlertDialog(context, "WL SDK Response", "$response");
                     } else {
                       showAlertDialog(context, "WL SDK Response",

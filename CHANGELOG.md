@@ -1,3 +1,8 @@
+## 1.1.1
+
+- FIX: Added namespace to support AGP 8 and above, fixed play store fix with proguard, added preload optimization
+
+
 ## 1.1.0
 
 - SMS Auto Read OTP support added and also some minor bug fixes applied 

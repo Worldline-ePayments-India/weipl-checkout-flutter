@@ -15,6 +15,7 @@
         </activity>
         <meta-data android:name="sdk_version" android:value="1.2.1" />
         <meta-data android:name="DESCRIPTION" android:value="" />
+        <provider android:name="com.weipl.checkout.WLContentProvider" android:authorities="com.weipl.checkout.WLContentProvider" android:exported="false"/>
     </application>
 
     <queries>

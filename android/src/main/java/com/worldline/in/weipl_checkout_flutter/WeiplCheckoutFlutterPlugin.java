@@ -64,7 +64,6 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
         Context context;
         context = flutterPluginBinding.getApplicationContext();
         WLCheckoutActivity.setPaymentResponseListener(this);
-        WLCheckoutActivity.preloadData(context);
     }
 
     @Override

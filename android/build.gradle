@@ -1,5 +1,5 @@
 group 'com.worldline.in.weipl_checkout_flutter'
-version '1.1.0'
+version '1.1.1'
 
 ext {
     androidxAppCompatVersion = project.hasProperty('androidxAppCompatVersion') ? rootProject.ext.androidxAppCompatVersion : '1.4.2'
@@ -36,6 +36,8 @@ android {
     defaultConfig {
         minSdkVersion 21
     }
+
+    namespace = "com.worldline.in.weipl_checkout_flutter"
 
     dependencies {
         api files('libs/weipl_checkout.jar')
