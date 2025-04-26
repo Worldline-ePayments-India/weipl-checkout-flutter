@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/lytMain"
-    tools:context=".WLCheckoutActivity">
+    tools:context=".WLCheckoutActivity"
+    android:filterTouchesWhenObscured="true"
+    android:fitsSystemWindows="true">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
