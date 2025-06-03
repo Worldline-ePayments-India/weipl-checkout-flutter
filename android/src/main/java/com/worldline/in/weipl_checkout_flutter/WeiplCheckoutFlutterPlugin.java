@@ -11,7 +11,6 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 import io.flutter.embedding.engine.plugins.activity.ActivityAware;
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding;
 import io.flutter.plugin.common.PluginRegistry.ActivityResultListener;
@@ -48,12 +47,6 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
 
     public WeiplCheckoutFlutterPlugin() {
 
-    }
-
-    public static void registerWith(Registrar registrar) {
-        final MethodChannel channel = new MethodChannel(registrar.messenger(), PLUGIN_NAME);
-        activity = registrar.activity();
-        channel.setMethodCallHandler(new WeiplCheckoutFlutterPlugin());
     }
 
     @Override

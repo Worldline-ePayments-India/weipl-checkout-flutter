@@ -1,9 +1,5 @@
 group 'com.worldline.in.weipl_checkout_flutter'
-version '1.1.2'
-
-ext {
-    androidxAppCompatVersion = project.hasProperty('androidxAppCompatVersion') ? rootProject.ext.androidxAppCompatVersion : '1.4.2'
-}
+version '1.2.0'
 
 buildscript {
     repositories {
@@ -12,8 +8,13 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.2.0'
+        classpath 'com.android.tools.build:gradle:8.7.3'
     }
+}
+
+apply plugin: 'com.android.library'
+ext {
+    androidxAppCompatVersion = project.hasProperty('androidxAppCompatVersion') ? rootProject.ext.androidxAppCompatVersion : '1.4.2'
 }
 
 rootProject.allprojects {
@@ -23,10 +24,9 @@ rootProject.allprojects {
     }
 }
 
-apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 34
+    compileSdkVersion 35
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -38,16 +38,16 @@ android {
     }
 
     namespace = "com.worldline.in.weipl_checkout_flutter"
+}
 
-    dependencies {
-        api files('libs/weipl_checkout.jar')
-        implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
-        implementation "androidx.constraintlayout:constraintlayout:2.1.4"
-        implementation "com.android.volley:volley:1.2.1"
-        implementation 'com.google.android.gms:play-services-auth:21.0.0'
-        implementation 'com.google.android.gms:play-services-auth-api-phone:18.0.2'
-        
-        implementation "com.google.code.gson:gson:2.8.8"
-        implementation 'androidx.core:core-ktx:1.8.0'
-    }
+dependencies {
+    api files('libs/weipl_checkout.jar')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.constraintlayout:constraintlayout:2.1.4"
+    implementation "com.android.volley:volley:1.2.1"
+    implementation 'com.google.android.gms:play-services-auth:21.0.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:18.0.2'
+    
+    implementation "com.google.code.gson:gson:2.8.8"
+    implementation 'androidx.core:core-ktx:1.8.0'
 }

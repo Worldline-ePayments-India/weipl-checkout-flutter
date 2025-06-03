@@ -1,3 +1,7 @@
+## 1.2.0
+
+- Release: Added support for Flutter 3.X, updated dependencies
+
 ## 1.1.2
 
 - FIX: Added a fix for preload in android native authorities
