@@ -8,13 +8,12 @@
         android:allowBackup="false"
         android:usesCleartextTraffic="false"
         android:supportsRtl="true"
-        tools:targetApi="34">
+        tools:targetApi="35">
         <activity android:name="com.weipl.checkout.WLCheckoutActivity"
             android:exported="true" android:screenOrientation="portrait">
         </activity>
-        <meta-data android:name="sdk_version" android:value="1.2.2" />
-        <meta-data android:name="DESCRIPTION" android:value="" />
-        <provider android:name="com.weipl.checkout.WLContentProvider" android:authorities="${applicationId}.WLSDKContentProvider" android:exported="false"/>
+        <meta-data android:name="sdk_version" android:value="1.3.0" />
+        <meta-data android:name="sdk_description" android:value="This is official Flutter plugin for Worldline ePayments India SDK." />
     </application>
 
     <queries>

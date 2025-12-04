@@ -17,40 +17,29 @@
         android:background="@color/black">
 
         <ImageButton
-            android:id="@+id/btnClose"
+            android:id="@+id/wl_btn_close"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:src="@mipmap/wl_btn_close"
             android:background="@android:color/transparent"/>
 
         <ImageButton
-            android:id="@+id/btnBack"
+            android:id="@+id/wl_btn_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="8dp"
-            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
             android:src="@mipmap/wl_btn_back"
             android:background="@android:color/transparent"
             android:visibility="invisible"/>
-
-        <!--<TextView
-            android:id="@+id/txtBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:layout_alignParentLeft="true"
-            android:textSize="20dp"
-            android:textColor="@android:color/white"
-            android:visibility="invisible"/>-->
-
         <TextView
-            android:id="@+id/txtUrl"
+            android:id="@+id/wl_txt_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@+id/btnClose"
-            android:layout_toRightOf="@+id/btnBack"
+            android:layout_toStartOf="@+id/wl_btn_close"
+            android:layout_toEndOf="@+id/wl_btn_back"
             android:layout_centerInParent="true"
             android:paddingTop="1dp"
             android:paddingBottom="1dp"

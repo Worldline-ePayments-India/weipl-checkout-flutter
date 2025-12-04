@@ -78,13 +78,6 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
     }
 
     private void open(Map<String, Object> args) {
-        if (args == null) {
-            Map<String, Object> retResponse = new HashMap<>();
-            retResponse.put("errorMsg", "Expected checkout initialisation options");
-            callback.success(retResponse);
-            return;
-        }
-
         try {
             JSONObject convertedObject = new JSONObject(args);
             WLCheckoutActivity.open(activity, convertedObject);
@@ -100,7 +93,11 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
             String emptyResponse = "No UPI Apps found!";
             if (callback != null) {
                 Map<String, Object> retResponse = new HashMap<>();
-                retResponse.put("errorMsg", emptyResponse);
+                retResponse.put("status", "error");
+                Map<String, Object> errorMap = new HashMap<>();
+                errorMap.put("error_code", "0399");
+                errorMap.put("error_desc", emptyResponse);
+                retResponse.put("response", errorMap);
                 callback.success(retResponse);
             }
             Log.d(TAG, emptyResponse);
@@ -154,7 +151,7 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
         Map<String, Object> retMap = new HashMap<>();
         if (jsonObject != null) {
             try {
-                retMap = toMap(jsonObject);
+                retMap.put("response", toMap(jsonObject));
                 callback.success(retMap);
             } catch (Exception e) {
                 response = retMap;
@@ -168,7 +165,8 @@ public class WeiplCheckoutFlutterPlugin implements FlutterPlugin, MethodCallHand
         Map<String, Object> retMap = new HashMap<>();
         if (jsonObject != null) {
             try {
-                retMap = toMap(jsonObject);
+                retMap.put("status", "error");
+                retMap.put("response", toMap(jsonObject));
                 callback.success(retMap);
             } catch (Exception e) {
                 response = retMap;

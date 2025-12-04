@@ -14,17 +14,9 @@ public class WeiplCheckoutFlutterPlugin: NSObject, FlutterPlugin {
         let instance = WeiplCheckoutFlutterPlugin()
         registrar.addMethodCallDelegate(instance, channel: channel)
         
-        do {
-            // preload method
-            instance.wlCheckout = WLCheckoutViewController()
-            instance.wlCheckout?.preloadData()
-            
-            // NotificationCenter for SDK to app response communication
-            NotificationCenter.default.addObserver(instance, selector: #selector(self.wlCheckoutPaymentResponse(result:)), name: Notification.Name("wlCheckoutPaymentResponse"), object: nil)
-            NotificationCenter.default.addObserver(instance, selector: #selector(self.wlCheckoutPaymentError(result:)), name: Notification.Name("wlCheckoutPaymentError"), object: nil)
-        } catch let error {
-            print(error.localizedDescription)
-        }
+        // NotificationCenter for SDK to app response communication
+        NotificationCenter.default.addObserver(instance, selector: #selector(self.wlCheckoutPaymentResponse(result:)), name: Notification.Name("wlCheckoutPaymentResponse"), object: nil)
+        NotificationCenter.default.addObserver(instance, selector: #selector(self.wlCheckoutPaymentError(result:)), name: Notification.Name("wlCheckoutPaymentError"), object: nil)
     }
     
     public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
@@ -34,20 +26,14 @@ public class WeiplCheckoutFlutterPlugin: NSObject, FlutterPlugin {
             
         case "open":
             
-            // null validation handelling.
-            if (call.arguments == nil){
-                let jsonDict: [String: Any] = ["errorMsg": "Expected checkout initialisation options"]
-                self.callback!(jsonDict)
-                return
-            }
-            
             do {
-                let jSONObject = String(data: try JSONSerialization.data(withJSONObject: call.arguments as Any, options: .prettyPrinted), encoding: String.Encoding(rawValue: NSUTF8StringEncoding))
-                
-                wlCheckout!.open(requestObj: jSONObject!)
+                var jSONObject = String(data: try JSONSerialization.data(withJSONObject: call.arguments as Any, options: .prettyPrinted), encoding: String.Encoding(rawValue: NSUTF8StringEncoding))
+                jSONObject = nil
+
+                WLCheckout.open(requestObj: jSONObject!)
                 
                 DispatchQueue.main.async {
-                    UIApplication.shared.delegate?.window??.rootViewController?.present(self.wlCheckout!, animated: false, completion: nil)
+                    UIApplication.shared.delegate?.window??.rootViewController?.present(WLCheckout.self, animated: false, completion: nil)
                 }
             } catch let error {
                 print(error.localizedDescription)
@@ -56,8 +42,7 @@ public class WeiplCheckoutFlutterPlugin: NSObject, FlutterPlugin {
             break;
         case "checkInstalledUpiApp":
             
-            let statusOfAPP = wlCheckout!.checkInstalledUpiApp(scheme: call.arguments as! String)
-            print("Status SWIFT: \(statusOfAPP)")
+            let statusOfAPP = WLCheckout.checkInstalledUpiApp(scheme: call.arguments as! String)
             result(statusOfAPP)
             
             break;
@@ -71,11 +56,23 @@ public class WeiplCheckoutFlutterPlugin: NSObject, FlutterPlugin {
     @objc func wlCheckoutPaymentResponse(result: Notification) {
         var jsonDict : Dictionary<String, Any>?
         
+        // Show status NIL in final response
         do {
             let jsonStringifiedString = result.object as! String
             let jsonStringifiedData = jsonStringifiedString.data(using: .utf8)
             jsonDict = try JSONSerialization.jsonObject(with: jsonStringifiedData!, options: []) as? [String: Any]
-            self.callback!(jsonDict)
+            
+            // Check if the casting was successful
+            if let retJsonDict = jsonDict {
+                // Use the unwrapped dictionary directly. No `toMap` function is needed.
+                let responseDict: [String: Any] = [
+                    "response": retJsonDict
+                ]
+                self.callback!(responseDict)
+            } else {
+                // Handle the case where the JSON was not a dictionary
+                print("JSON data could not be cast to a [String: Any] dictionary.")
+            }
         } catch let error {
             response = jsonDict
             print(error.localizedDescription)
@@ -89,7 +86,20 @@ public class WeiplCheckoutFlutterPlugin: NSObject, FlutterPlugin {
             let jsonStringifiedString = result.object as! String
             let jsonStringifiedData = jsonStringifiedString.data(using: .utf8)
             jsonDict = try JSONSerialization.jsonObject(with: jsonStringifiedData!, options: []) as? [String: Any]
-            self.callback!(jsonDict)
+            
+            // Check if the casting was successful
+            if let retJsonDict = jsonDict {
+                // Use the unwrapped dictionary directly. No `toMap` function is needed.
+                let responseDict: [String: Any] = [
+                    "status": "error",
+                    "response": retJsonDict
+                ]
+                self.callback!(responseDict)
+
+            } else {
+                // Handle the case where the JSON was not a dictionary
+                print("JSON data could not be cast to a [String: Any] dictionary.")
+            }
         } catch let error {
             response = jsonDict
             print(error.localizedDescription)

@@ -54,13 +54,14 @@ class _MyHomePageState extends State<MyHomePage> {
               // Payment action
               ElevatedButton(
                   onPressed: () {
-                    
                     String deviceID = ""; // initialize variable
 
                     if (Platform.isAndroid) {
-                      deviceID = "AndroidSH2"; // Android-specific deviceId, supported options are "AndroidSH1" & "AndroidSH2"
+                      deviceID =
+                          "AndroidSH2"; // Android-specific deviceId, supported options are "AndroidSH1" & "AndroidSH2"
                     } else if (Platform.isIOS) {
-                      deviceID = "iOSSH2"; // iOS-specific deviceId, supported options are "iOSSH1" & "iOSSH2"
+                      deviceID =
+                          "iOSSH2"; // iOS-specific deviceId, supported options are "iOSSH1" & "iOSSH2"
                     }
 
                     var reqJson = {
@@ -100,8 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       }
                     };
 
-                    wlCheckoutFlutter.on(
-                        WeiplCheckoutFlutter.wlResponse, handleResponse);
+                    wlCheckoutFlutter.on(WeiplCheckoutFlutter.wlResponse,
+                        responseCallback, errorCallback);
                     wlCheckoutFlutter.open(reqJson);
                   },
                   child: const Text("Proceed")),
@@ -116,7 +117,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       showAlertDialog(context, "WL SDK Response", "$status");
                     } else if (Platform.isAndroid) {
                       // android code
-                      Map<dynamic, dynamic> response = await wlCheckoutFlutter.upiIntentAppsList();
+                      Map<dynamic, dynamic> response =
+                          await wlCheckoutFlutter.upiIntentAppsList();
                       showAlertDialog(context, "WL SDK Response", "$response");
                     } else {
                       showAlertDialog(context, "WL SDK Response",
@@ -131,8 +133,12 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  void handleResponse(Map<dynamic, dynamic> response) {
+  void responseCallback(Map<dynamic, dynamic> response) {
     showAlertDialog(context, "WL SDK Response", "$response");
+  }
+
+  void errorCallback(Map<dynamic, dynamic> response) {
+    showAlertDialog(context, "WL SDK Error", "$response");
   }
 
   void showAlertDialog(BuildContext context, String title, String message) {

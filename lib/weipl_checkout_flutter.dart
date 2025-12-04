@@ -44,10 +44,17 @@ class WeiplCheckoutFlutter {
   }
 
   // Registers event listeners for payment events
-  void on(String event, Function handler) {
+  void on(String event, Function responseCallback, Function errorCallback) {
     EventCallback cb;
     cb = (event, cont) {
-      handler(event.eventData);
+      final eventData = event.eventData;
+
+      final data = eventData as Map;
+      if (data.containsKey('status') && data['status'] == 'error') {
+        errorCallback(data['response']); // or data['error']
+      } else {
+        responseCallback(data['response']);
+      }
     };
     _eventEmitter.on(event, null, cb);
     _syncResponse();

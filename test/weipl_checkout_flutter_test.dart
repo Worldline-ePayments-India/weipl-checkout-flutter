@@ -5,25 +5,31 @@ import 'package:weipl_checkout_flutter/weipl_checkout_flutter.dart';
 import 'dart:io' show Platform;
 
 class MockWeiplCheckoutFlutterPlatform {
-
   Future<String?> open() => Future.value('open');
 }
 
 void main() {
-  void handleResponse(Map<dynamic, dynamic> response) {
+  void responseCallback(Map<dynamic, dynamic> response) {
+    if (kDebugMode) {
+      print('$response');
+    }
+  }
+
+  void errorCallback(Map<dynamic, dynamic> response) {
     if (kDebugMode) {
       print('$response');
     }
   }
 
   test('open', () async {
-
     String deviceID = ""; // initiaze varibale
 
     if (Platform.isAndroid) {
-      deviceID = "AndroidSH2"; // Android-specific deviceId, supported options are "AndroidSH1" & "AndroidSH2"
+      deviceID =
+          "AndroidSH2"; // Android-specific deviceId, supported options are "AndroidSH1" & "AndroidSH2"
     } else if (Platform.isIOS) {
-      deviceID = "iOSSH2"; // iOS-specific deviceId, supported options are "iOSSH1" & "iOSSH2"
+      deviceID =
+          "iOSSH2"; // iOS-specific deviceId, supported options are "iOSSH1" & "iOSSH2"
     }
 
     WeiplCheckoutFlutter wlCheckoutFlutter = WeiplCheckoutFlutter();
@@ -63,7 +69,8 @@ void main() {
       }
     };
 
-    wlCheckoutFlutter.on(WeiplCheckoutFlutter.wlResponse, handleResponse);
+    wlCheckoutFlutter.on(
+        WeiplCheckoutFlutter.wlResponse, responseCallback, errorCallback);
     wlCheckoutFlutter.open(reqJson);
   });
 }

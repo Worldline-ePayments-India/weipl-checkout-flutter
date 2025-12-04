@@ -15,7 +15,7 @@ This plugin is available on Pub: [https://pub.dev/packages/weipl_checkout_flutte
 Add this to `dependencies` in your app's `pubspec.yaml`
 
 ```yaml
-weipl_checkout_flutter: ^1.2.0
+weipl_checkout_flutter: ^1.3.0
 ```
 
 **Note for Android**: Make sure that the minimum API level for your app is 21 or higher.
@@ -46,19 +46,27 @@ The plugin uses event-based communication, and emits events when payment fails o
 
 The event names are exposed via the constants `wlResponse` from plugin class.
 
-Use the `on(String event, Function handler)` method on the `WeiplCheckoutFlutter` instance to attach event listeners.
+Use the `on(String event, Function responseCallback, Function errorCallback)` method on the `WeiplCheckoutFlutter` instance to attach event listeners.
 
 ```dart
 
-wlCheckoutFlutter.on(WeiplCheckoutFlutter.wlResponse, handleResponse);
+wlCheckoutFlutter.on(WeiplCheckoutFlutter.wlResponse, responseCallback, errorCallback);
 ```
 
 The handlers would be defined somewhere as
 
 ```dart
 
-void handleResponse(Map<dynamic, dynamic> response) {
-  // Do something when payment succeeds
+void responseCallback(Map<dynamic, dynamic> response) {
+  // Called when the payment process completes, either successfully or with a failure.
+  // The `response` map contains details about the transaction outcome.
+  // Handle payment success or failure.
+}
+
+void errorCallback(Map<dynamic, dynamic> response) {
+  // Called when an error occurs before or during the initiation of the payment process.
+  // The `response` map contains information about the error encountered.
+  // Handle initial errors.
 }
 
 ```
