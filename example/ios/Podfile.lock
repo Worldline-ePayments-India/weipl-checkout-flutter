@@ -1,7 +1,7 @@
 PODS:
   - Flutter (1.0.0)
-  - weipl_checkout (1.3.2)
-  - weipl_checkout_flutter (1.3.0):
+  - weipl_checkout (1.3.3)
+  - weipl_checkout_flutter (1.3.1):
     - Flutter
     - weipl_checkout
 
@@ -21,8 +21,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  weipl_checkout: 1593eb7900427413578c762f7fb3bd83815b0f81
-  weipl_checkout_flutter: de3e86e546c134de1a62b37df0144aaa20d03b8b
+  weipl_checkout: 61317cff9a09fa96d07245f4dfc39e964712e76e
+  weipl_checkout_flutter: 35d11f537befd3f4d137739f40776b57e5f6bec6
 
 PODFILE CHECKSUM: af8f2633b681d9bf6ce353c001b61ca7630a200a
 

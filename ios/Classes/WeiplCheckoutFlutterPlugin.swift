@@ -28,7 +28,6 @@ public class WeiplCheckoutFlutterPlugin: NSObject, FlutterPlugin {
             
             do {
                 var jSONObject = String(data: try JSONSerialization.data(withJSONObject: call.arguments as Any, options: .prettyPrinted), encoding: String.Encoding(rawValue: NSUTF8StringEncoding))
-                jSONObject = nil
 
                 WLCheckout.open(requestObj: jSONObject!)
                 
