@@ -1,3 +1,8 @@
+## 1.3.2
+
+- Fixed UPI Intent not working on Redmi OS 15 devices
+- Enabled support for Android 16 OS
+
 ## 1.3.1
 
 - FIX: Resolved an issue with request data handling in the open method of WeiplCheckoutFlutterPlugin.swift
